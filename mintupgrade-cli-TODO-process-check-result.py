@@ -18,11 +18,13 @@ def process_check_result(self, check):
                 print(_("Error: %s") % check.message, end=" ") # TODO really?
             elif check.result == RESULT_WARNING:
                 print(_("Warning: %s") % check.mesage, end=" ") # TODO really?
-            elif check.result == RESULT_INFO: # TODO oder else?
+            elif check.result == RESULT_INFO: # TODO or else?
                 print(check.message)
                 #okbutton true
                 if check in self.checks:
                     self.checks.remove(check)
+                if check.allow_recheck:
+                    # ask for recheck todo
             self.builder.get_object("error_check_button").set_visible(check.allow_recheck) # TODO
             #self.builder.get_object("error_ok_button").set_visible(False)
 
